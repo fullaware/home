@@ -5,11 +5,10 @@ PS1="\[\e[37;1m\][\[\e[32;1m\]\u\[\e[33;1m\]@\[\e[32;1m\]\h \[\e[33;1m\]- \[\e[3
 #alias ll='ls -lGFh'
 #alias la='ls -laGFh'
 
-export PATH=/usr/local/bin:$PATH
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+export PATH=/usr/local/bin:/mongodb/bin:/usr/local/opt/coreutils/libexec/gnubin:$PATH
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
-export PATH=/mongodb/bin:$PATH
 
+#JAVA
 export JAVA_HOME=$(/usr/libexec/java_home)
 
 # EC2
