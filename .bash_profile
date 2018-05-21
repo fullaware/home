@@ -19,7 +19,5 @@ export AWS_ACCESS_KEY=
 export AWS_SECRET_KEY=
 
 test -e ~/.dircolors && \ eval 'dircolors -b ~/.dircolors'
-alias ls="ls -aFh --color=always"
-alias ll="ls -alFh --color=always"
-alias grep="grep --color=always"
-alias egrep="egrep --color=always"
+alias ls="ls -aFhG"
+alias ll="ls -alFhG"
