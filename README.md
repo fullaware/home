@@ -23,6 +23,9 @@ sudo dnf install git-core
 mkdir projects
 # rm myssh.tar.gz 
 ssh git@github.com
+git config --global user.email "fullaware@gmail.com"
+git config --global user.name "Full Aware"
+
 cd ~/projects/
 sudo dnf config-manager --add-repo https://repository.mullvad.net/rpm/stable/mullvad.repo
 # Install the package
