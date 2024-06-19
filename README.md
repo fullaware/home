@@ -85,10 +85,6 @@ echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com
 dnf check-update
 sudo dnf install code
 
-# Install Ollama
-curl -fsSL https://ollama.com/install.sh | sh
-ollama run llama3:8b
-
 # Install Docker
 sudo dnf -y install dnf-plugins-core
 sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
@@ -100,7 +96,14 @@ newgrp docker
 sudo systemctl enable docker.service
 sudo systemctl enable containerd.service
 
+# Install Ollama
+curl -fsSL https://ollama.com/install.sh | sh
+ollama run llama3:8b
+docker run -d -p 3000:8080 --add-host=host.docker.internal:host-gateway -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:main
+firefox http://localhost:3000
+
 # Install Zoom
 wget https://zoom.us/client/6.1.0.198/zoom_x86_64.rpm
 sudo dnf install zoom_x86_64.rpm
+
 ```
