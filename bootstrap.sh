@@ -11,7 +11,7 @@ sudo sed -i.bak '/\[Element PCM\]/i [Element Master]\nswitch = mute\nvolume = ig
 # [Element PCM]
 
 # Install hdajackretask to enable bottom speakers
-sudo dnf install alsa-tools
+sudo dnf install alsa-tools -y
 hdajackretask
 # Check "Show Unconnected pins"
 # Change Pin ID 0x1b to Internal Speaker (LFE)
@@ -27,7 +27,7 @@ tar -xvf myssh.tar.gz
 rm ~/myssh.tar.gz 
 
 # Configure Git
-sudo dnf install git-core
+sudo dnf install git-core -y
 ssh -o StrictHostKeyChecking=accept-new git@github.com
 git config --global user.email "fullaware@@users.noreply.github.com"
 git config --global user.name "Full Aware"
@@ -49,14 +49,14 @@ cat .vimrc >> ~/.vimrc
 source ~/.bashrc
 
 # Install RPMFusion
-sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y
 
 # Install Hugo
-sudo dnf install hugo
+sudo dnf install hugo -y
 
 # Install Mullvad VPN
 sudo dnf config-manager --add-repo https://repository.mullvad.net/rpm/stable/mullvad.repo
-sudo dnf install mullvad-vpn
+sudo dnf install mullvad-vpn -y
 
 # Install NVIDIA for Fedora 40 - GeForce RTX 3050 6GB Laptop GPU
 firefox https://www.nvidia.com/download/index.aspx
@@ -65,7 +65,7 @@ chmod +x ~/Downloads/NVIDIA*.run
 echo -e "blacklist nouveau\noptions nouveau modeset=0" | sudo tee /etc/modprobe.d/blacklist-nouveau.conf
 vim /etc/default/grub
 # Replace GRUB_CMDLINE_LINUX with this
-GRUB_CMDLINE_LINUX="rhgb quiet rd.driver.blacklist=nouveau nvidia-drm.modeset=1"
+# GRUB_CMDLINE_LINUX="rhgb quiet rd.driver.blacklist=nouveau nvidia-drm.modeset=1"
 sudo dracut --force
 sudo grub2-mkconfig -o /boot/grub2/grub.cfg
 
@@ -73,13 +73,13 @@ sudo grub2-mkconfig -o /boot/grub2/grub.cfg
 sudo systemctl set-default multi-user.target
 sudo reboot
 sudo dnf makecache
-sudo dnf install pkgconf-pkg-config xorg-x11-server-Xwayland-devel xorg-x11-server-Xorg xorg-x11-server-devel
+sudo dnf install pkgconf-pkg-config xorg-x11-server-Xwayland-devel xorg-x11-server-Xorg xorg-x11-server-devel -y
 sudo ~/Downloads/NVIDIA*.run
-YES ENTER
-YES ENTER
-YES ENTER
-Rebuild initramfs ENTER
-YES ENTER
+# YES ENTER
+# YES ENTER
+# YES ENTER
+# Rebuild initramfs ENTER
+# YES ENTER
 
 # Enable graphical UI
 sudo systemctl set-default graphical.target
@@ -89,18 +89,18 @@ sudo nvidia-smi
 sudo nvidia-settings
 
 # Install Steam (requires RPMFusion)
-sudo dnf install steam
+sudo dnf install steam -y
 
 # Install VS Code
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
 echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" | sudo tee /etc/yum.repos.d/vscode.repo > /dev/null
 dnf check-update
-sudo dnf install code
+sudo dnf install code -y
 
 # Install Docker
 sudo dnf -y install dnf-plugins-core
 sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
-sudo dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+sudo dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 sudo systemctl start docker
 sudo groupadd docker
 sudo usermod -aG docker $USER
@@ -126,10 +126,10 @@ read -p "Proceed to http://localhost:8080 to modify Ollama API"
 firefox https://zoom.us/download?os=linux
 read -p "Proceed to the zoom.us website and choose the latest .rpm"
 wget https://zoom.us/client/6.1.0.198/zoom_x86_64.rpm
-sudo dnf install zoom_x86_64.rpm
+sudo dnf install zoom_x86_64.rpm -y
 
 # Install VS Code
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
 echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" | sudo tee /etc/yum.repos.d/vscode.repo > /dev/null
 dnf check-update
-sudo dnf install code
+sudo dnf install code -y
