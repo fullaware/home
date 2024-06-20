@@ -1,6 +1,14 @@
+if [[ `command -v tput` && `tput setaf 1 2>/dev/null` ]]; then
+  COLOR_RED=`tput setaf 1`
+  COLOR_GREEN=`tput setaf 2`
+  COLOR_YELLOW=`tput setaf 3`
+  COLOR_BLUE=`tput setaf 4`
+  COLOR_RESET=`tput sgr0`
+fi
+
 if [ ! -f ./phase1.phase ];
 then
-    echo "Beginning Phase 1"
+    echo -e "${COLOR_BLUE}Beginning Phase 1${COLOR_RESET}"
     # Install NVIDIA for Fedora 40 - GeForce RTX 3050 6GB Laptop GPU
     firefox https://www.nvidia.com/download/index.aspx
     read -p "Proceed to https://www.nvidia.com/download/index.aspx to download driver for RTX 3050 Laptop GPU"
@@ -161,6 +169,10 @@ else
                 echo -e "[insync]\nname=insync repo\nbaseurl=http://yum.insync.io/fedora/\$releasever/\nenabled=1\ngpgcheck=1\ngpgkey=https://d2t3ff60b2tol4.cloudfront.net/repomd.xml.key\nenabled=1\nmetadata_expire=120m" | sudo tee /etc/yum.repos.d/insync.repo > /dev/null
                 sudo dnf update
                 sudo dnf install insync -y
+
+                # Install Joplin
+                wget -O - https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_and_update.sh | bash
+
                 touch ./phase4.phase
                 exit 0
             else
