@@ -67,7 +67,7 @@ else
         else
             if [ ! -f ./phase4.phase ];
             then
-                echo "Beginning Phase 3"
+                echo "Beginning Phase 4"
                 # Mount SMB share and copy myssh.tar.gz
                 sudo mkdir /mnt/4TB
                 sudo chown fullaware:fullaware /mnt/4TB
