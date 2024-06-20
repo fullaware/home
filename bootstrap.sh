@@ -152,6 +152,12 @@ else
                 echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" | sudo tee /etc/yum.repos.d/vscode.repo > /dev/null
                 dnf check-update
                 sudo dnf install code -y
+
+                # Install INSYNC
+                sudo rpm --import https://d2t3ff60b2tol4.cloudfront.net/repomd.xml.key
+                echo -e "[insync]\nname=insync repo\nbaseurl=http://yum.insync.io/fedora/\$releasever/\nenabled=1\ngpgcheck=1\ngpgkey=https://d2t3ff60b2tol4.cloudfront.net/repomd.xml.key\nenabled=1\nmetadata_expire=120m" | sudo tee /etc/yum.repos.d/insync.repo > /dev/null
+                sudo dnf update
+                sudo dnf install insync -y
                 touch ./phase4.phase
                 exit 0
             else
