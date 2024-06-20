@@ -8,8 +8,8 @@ fi
 
 if [ ! -f ./phase1.phase ];
 then
-    echo -e "${COLOR_BLUE}Beginning Phase 1${COLOR_RESET}"
-    # Install NVIDIA for Fedora 40 - GeForce RTX 3050 6GB Laptop GPU
+    echo -e "${COLOR_RED}Beginning Phase 1${COLOR_RESET}"
+    echo -e "${COLOR_GREEN}Install NVIDIA for Fedora 40 - GeForce RTX 3050 6GB Laptop GPU${COLOR_RESET}"
     firefox https://www.nvidia.com/download/index.aspx
     read -p "Proceed to https://www.nvidia.com/download/index.aspx to download driver for RTX 3050 Laptop GPU"
     chmod +x ~/Downloads/NVIDIA*.run
@@ -32,7 +32,7 @@ then
 else
     if [ ! -f ./phase2.phase ];
     then
-        echo "Beginning Phase 2"
+        echo -e "${COLOR_RED}Beginning Phase 2${COLOR_RESET}"
         
         echo "YES ENTER"
         echo "YES ENTER"
@@ -51,7 +51,7 @@ else
     else
         if [ ! -f ./phase3.phase ];
         then
-            echo "Beginning Phase 3"
+            echo -e "${COLOR_RED}Beginning Phase 3${COLOR_RESET}"
             lsmod | grep nvidia
             # Verify NVIDIA driver install successful
             sudo nvidia-smi
@@ -75,11 +75,11 @@ else
         else
             if [ ! -f ./phase4.phase ];
             then
-                echo "Beginning Phase 4"
+                echo -e "${COLOR_RED}Beginning Phase 4${COLOR_RESET}"
                 # Mount SMB share and copy myssh.tar.gz
                 sudo mkdir /mnt/4TB
                 sudo chown fullaware:fullaware /mnt/4TB
-                echo "Enter password for SMB mount"
+                echo -e "${COLOR_GREEN}Enter password for SMB mount${COLOR_RESET}"
                 sudo mount -t cifs //mouse.home.fullaware.com/4TB /mnt/4TB -o username=home
                 cp /mnt/4TB/myssh.tar.gz ~
                 cd ~
@@ -172,6 +172,17 @@ else
 
                 # Install Joplin
                 wget -O - https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_and_update.sh | bash
+
+                # Install kubectl
+                curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+                
+                # Install MongoDB Compass
+                wget https://downloads.mongodb.com/compass/mongodb-compass-1.43.1.x86_64.rpm
+                sudo dnf install mongodb-compass*.rpm -y
+                
+                # Install DBeaver
+                wget https://dbeaver.io/files/dbeaver-ce-latest-stable.x86_64.rpm
+                sudo dnf dbeaver-ce-latest-stable*.rpm -y
 
                 touch ./phase4.phase
                 exit 0
