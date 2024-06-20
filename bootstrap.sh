@@ -69,6 +69,7 @@ else
                 # Mount SMB share and copy myssh.tar.gz
                 sudo mkdir /mnt/4TB
                 sudo chown fullaware:fullaware /mnt/4TB
+                echo "Enter password for SMB mount"
                 sudo mount -t cifs //mouse.home.fullaware.com/4TB /mnt/4TB -o username=home
                 cp /mnt/4TB/myssh.tar.gz ~
                 cd ~
