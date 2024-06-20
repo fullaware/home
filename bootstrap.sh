@@ -174,15 +174,24 @@ else
                 wget -O - https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_and_update.sh | bash
 
                 # Install kubectl
-                curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-                
+                sudo dnf install kubernetes-client -y
+
+                # Install k9s
+                wget https://github.com/derailed/k9s/releases/download/v0.32.5/k9s_linux_amd64.rpm
+                sudo dnf install k9s_linux_amd64.rpm -y
+
+                # Install helm
+                curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+                chmod 700 get_helm.sh
+                ./get_helm.sh
+
                 # Install MongoDB Compass
                 wget https://downloads.mongodb.com/compass/mongodb-compass-1.43.1.x86_64.rpm
                 sudo dnf install mongodb-compass*.rpm -y
                 
                 # Install DBeaver
                 wget https://dbeaver.io/files/dbeaver-ce-latest-stable.x86_64.rpm
-                sudo dnf dbeaver-ce-latest-stable*.rpm -y
+                sudo dnf install dbeaver-ce-latest-stable*.rpm -y
 
                 touch ./phase4.phase
                 exit 0
