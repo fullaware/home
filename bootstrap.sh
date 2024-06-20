@@ -28,7 +28,7 @@ rm ~/myssh.tar.gz
 
 # Configure Git
 sudo dnf install git-core
-ssh git@github.com
+ssh -o StrictHostKeyChecking=accept-new git@github.com
 git config --global user.email "fullaware@@users.noreply.github.com"
 git config --global user.name "Full Aware"
 
