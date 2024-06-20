@@ -25,12 +25,14 @@ else
     if [ ! -f ./phase2.phase ];
     then
         echo "Beginning Phase 2"
-        sudo ~/Downloads/NVIDIA*.run
+        
         echo "YES ENTER"
         echo "YES ENTER"
         echo "YES ENTER"
         echo "Rebuild initramfs ENTER"
         echo "YES ENTER"
+        read -p " --> Press any key to continue <--"
+        sudo ~/Downloads/NVIDIA*.run
 
         # Enable graphical UI
         sudo systemctl set-default graphical.target
