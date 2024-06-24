@@ -193,6 +193,12 @@ else
                 wget https://dbeaver.io/files/dbeaver-ce-latest-stable.x86_64.rpm
                 sudo dnf install dbeaver-ce-latest-stable*.rpm -y
 
+                # Install and configure AWS CLI
+
+                # Install and configure Azure CLI
+
+                
+
                 touch ./phase4.phase
                 exit 0
             else
