@@ -194,7 +194,7 @@ else
                 sudo dnf install dbeaver-ce-latest-stable*.rpm -y
                 
                 # Install Java
-                sudo dnf install java-latest-openjdk.x86_64 -y
+                sudo dnf install java-11-openjdk java-11-openjdk-devel -y
                 sudo dnf install icedtea-web -y
                 
                 # Install and configure AWS CLI
